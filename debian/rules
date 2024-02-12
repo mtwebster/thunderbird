@@ -9,10 +9,10 @@ DEB_VERSION=$(shell dpkg-parsechangelog | sed -n 's/^Version: //p')
 	dh $@
 
 override_dh_auto_install:
-	$(CURDIR)/gen-control.py $(DEB_HOST_ARCH) $(CURDIR) $(DEB_VERSION)
-	rm -rf $(CURDIR)/debian/firefox*
+# 	$(CURDIR)/gen-control.py $(DEB_HOST_ARCH) $(CURDIR) $(DEB_VERSION)
+	rm -rf $(CURDIR)/debian/thunderbird*
 	$(CURDIR)/download.py $(DEB_HOST_ARCH) $(CURDIR) $(DEB_VERSION)
-	cp -r $(CURDIR)/usr $(CURDIR)/debian/firefox/
+	cp -r $(CURDIR)/usr $(CURDIR)/debian/thunderbird/
 	dh_install
 
 override_dh_auto_configure:

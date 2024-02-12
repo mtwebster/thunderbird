@@ -23,35 +23,37 @@ if archi == "amd64":
 else:
     archi="linux-i686"
 
-US_URL = "http://download-origin.cdn.mozilla.net/pub/firefox/releases/%s/%s/en-US/firefox-%s.tar.bz2" % (release, archi, release)
-XPI_URL = "http://download-origin.cdn.mozilla.net/pub/firefox/releases/%s/%s/xpi" % (release, archi)
+US_URL = "http://download-origin.cdn.mozilla.net/pub/thunderbird/releases/%s/%s/en-US/thunderbird-%s.tar.bz2" % (release, archi, release)
+XPI_URL = "http://download-origin.cdn.mozilla.net/pub/thunderbird/releases/%s/%s/xpi" % (release, archi)
 
-os.system("rm -rf %s/debian/firefox" % curdir)
-os.system("rm -rf %s/debian/firefox-*" % curdir)
-os.system("mkdir -p %s/debian/firefox/usr/lib" % curdir)
-os.chdir("%s/debian/firefox/usr/lib" % curdir)
+os.system("rm -rf %s/debian/thunderbird" % curdir)
+os.system("rm -rf %s/debian/thunderbird-*" % curdir)
+os.system("mkdir -p %s/debian/thunderbird/usr/lib" % curdir)
+os.chdir("%s/debian/thunderbird/usr/lib" % curdir)
 if not abort:
 
     os.system("wget %s" % US_URL)
-    if (not os.path.exists("firefox-%s.tar.bz2" % release)):
+    if (not os.path.exists("thunderbird-%s.tar.bz2" % release)):
         print("FAILED: Could not download %s" % (US_URL))
         sys.exit(1)
 
-    os.system("bzip2 -d firefox-%s.tar.bz2" % release)
-    os.system("tar xvf firefox-%s.tar" % release)
-    os.system("rm firefox-%s.tar" % release)
+    os.system("bzip2 -d thunderbird-%s.tar.bz2" % release)
+    os.system("tar xvf thunderbird-%s.tar" % release)
+    os.system("rm thunderbird-%s.tar" % release)
 
-    os.system("mkdir -p %s/debian/firefox/usr/lib/firefox/distribution" % curdir)
-    os.system("cp %s/pref/policies.json %s/debian/firefox/usr/lib/firefox/distribution" % (curdir, curdir))
-    os.system("cp %s/pref/distribution.ini %s/debian/firefox/usr/lib/firefox/distribution" % (curdir, curdir))
-
-    os.system("mkdir -p %s/debian/firefox/usr/share/icons/hicolor" % curdir)
-    os.chdir("%s/debian/firefox/usr/share/icons/hicolor" % curdir)
-    os.system("mkdir -p 16x16/apps 32x32/apps 48x48/apps 128x128/apps")
-    os.system("ln -s /usr/lib/firefox/browser/chrome/icons/default/default16.png 16x16/apps/firefox.png")
-    os.system("ln -s /usr/lib/firefox/browser/chrome/icons/default/default32.png 32x32/apps/firefox.png")
-    os.system("ln -s /usr/lib/firefox/browser/chrome/icons/default/default48.png 48x48/apps/firefox.png")
-    os.system("ln -s /usr/lib/firefox/browser/icons/mozicon128.png 128x128/apps/firefox.png")
+    os.system("mkdir -p %s/debian/thunderbird/usr/share/icons/hicolor" % curdir)
+    os.chdir("%s/debian/thunderbird/usr/share/icons/hicolor" % curdir)
+    os.system("mkdir -p 16x16/apps 22x22/apps 24x24/apps 32x32/apps 48x48/apps 64x64/apps 128x128/apps 256x256/apps")
+    os.system("ln -s /usr/lib/thunderbird/chrome/icons/default/default16.png 16x16/apps/thunderbird.png")
+    os.system("ln -s /usr/lib/thunderbird/chrome/icons/default/default22.png 22x22/apps/thunderbird.png")
+    os.system("ln -s /usr/lib/thunderbird/chrome/icons/default/default24.png 24x24/apps/thunderbird.png")
+    os.system("ln -s /usr/lib/thunderbird/chrome/icons/default/default32.png 32x32/apps/thunderbird.png")
+    os.system("ln -s /usr/lib/thunderbird/chrome/icons/default/default48.png 48x48/apps/thunderbird.png")
+    os.system("ln -s /usr/lib/thunderbird/chrome/icons/default/default64.png 64x64/apps/thunderbird.png")
+    os.system("ln -s /usr/lib/thunderbird/chrome/icons/default/default128.png 128x128/apps/thunderbird.png")
+    os.system("ln -s /usr/lib/thunderbird/chrome/icons/default/default256.png 256x256/apps/thunderbird.png")
+    print("done")
+    exit(0)
 
 if lmde:
     locale_prefix = "firefox-l10n"
