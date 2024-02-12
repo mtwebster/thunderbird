@@ -1,0 +1,45 @@
+Source: firefox
+Section: web
+Priority: optional
+Maintainer: Clement Lefebvre <root@linuxmint.com>
+Build-Depends: debhelper (>= 11), wget, python3
+Standards-Version: 3.7.2
+
+Package: firefox
+Architecture: any
+Replaces: firefox-dbg (<< 95.0.1+linuxmint1+una), firefox-dev (<< 95.0.1+linuxmint1+una), firefox-mozsymbols (<< 95.0.1+linuxmint1+una), firefox-geckodriver (<< 95.0.1+linuxmint1+una)
+Breaks: firefox-dbg (<< 95.0.1+linuxmint1+una), firefox-dev (<< 95.0.1+linuxmint1+una), firefox-mozsymbols (<< 95.0.1+linuxmint1+una), firefox-geckodriver (<< 95.0.1+linuxmint1+una)
+Provides: gnome-www-browser, www-browser
+Pre-Depends: ubuntu-system-adjustments (>= 2021.12.16)
+Description: The Firefox web browser
+ The Mozilla Firefox Web Browser.
+
+Package: firefox-dbg
+Architecture: any
+Section: debug
+Priority: extra
+Description: Safe and easy web browser from Mozilla - debug symbols
+ .
+ This is a transitional package. It can be safely removed.
+
+Package: firefox-dev
+Architecture: any
+Section: oldlibs
+Priority: extra
+Description: Safe and easy web browser from Mozilla - development files
+ .
+ This is a transitional package. It can be safely removed.
+
+Package: firefox-mozsymbols
+Architecture: amd64 i386
+Section: debug
+Priority: extra
+Description: Safe and easy web browser from Mozilla - Breakpad symbols
+ .
+ This is a transitional package. It can be safely removed.
+
+Package: firefox-geckodriver
+Architecture: any
+Description: Safe and easy web browser from Mozilla - geckodriver
+ .
+ This is a transitional package. It can be safely removed.
