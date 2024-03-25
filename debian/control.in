@@ -1,45 +1,45 @@
-Source: firefox
-Section: web
+Source: thunderbird
+Section: mail
 Priority: optional
 Maintainer: Clement Lefebvre <root@linuxmint.com>
 Build-Depends: debhelper (>= 11), wget, python3
 Standards-Version: 3.7.2
 
-Package: firefox
+Package: thunderbird
 Architecture: any
-Replaces: firefox-dbg (<< 95.0.1+linuxmint1+una), firefox-dev (<< 95.0.1+linuxmint1+una), firefox-mozsymbols (<< 95.0.1+linuxmint1+una), firefox-geckodriver (<< 95.0.1+linuxmint1+una)
-Breaks: firefox-dbg (<< 95.0.1+linuxmint1+una), firefox-dev (<< 95.0.1+linuxmint1+una), firefox-mozsymbols (<< 95.0.1+linuxmint1+una), firefox-geckodriver (<< 95.0.1+linuxmint1+una)
-Provides: gnome-www-browser, www-browser
+Breaks: thunderbird-dbg (<< 1:115.8.1+build1+snap1), thunderbird-dev (<< 1:115.8.1+build1+snap1), thunderbird-geckodriver (<< 1:115.8.1+build1+snap1), thunderbird-mozsymbols (<< 1:115.8.1+build1+snap1)
+Replaces: thunderbird-dbg (<< 1:115.8.1+build1+snap1), thunderbird-dev (<< 1:115.8.1+build1+snap1), thunderbird-geckodriver (<< 1:115.8.1+build1+snap1), thunderbird-mozsymbols (<< 1:115.8.1+build1+snap1)
+Provides: mail-reader
 Pre-Depends: ubuntu-system-adjustments (>= 2021.12.16)
-Description: The Firefox web browser
- The Mozilla Firefox Web Browser.
+Description: Email, RSS and newsgroup client with integrated spam filter
+ Thunderbird is a full-featured email, RSS and newsgroup client that makes
+ emailing safer, faster and easier than ever before. It supports different mail
+ accounts (POP, IMAP, Gmail), has a simple mail account setup wizard, one-
+ click address book, tabbed interface, an integrated learning spam filter,
+ advanced search and indexing capabilities, and offers easy organization
+ of mails with tagging and virtual folders. It also features unrivalled
+ extensibility.
 
-Package: firefox-dbg
+Package: thunderbird-dbg
 Architecture: any
 Section: debug
 Priority: extra
-Description: Safe and easy web browser from Mozilla - debug symbols
+Description: Email, RSS and newsgroup client - debug symbols
  .
  This is a transitional package. It can be safely removed.
 
-Package: firefox-dev
+Package: thunderbird-dev
 Architecture: any
-Section: oldlibs
+Section: mail
 Priority: extra
-Description: Safe and easy web browser from Mozilla - development files
+Description: Email, RSS and newsgroup client - development files
  .
  This is a transitional package. It can be safely removed.
 
-Package: firefox-mozsymbols
+Package: thunderbird-mozsymbols
 Architecture: amd64 i386
 Section: debug
 Priority: extra
-Description: Safe and easy web browser from Mozilla - Breakpad symbols
- .
- This is a transitional package. It can be safely removed.
-
-Package: firefox-geckodriver
-Architecture: any
-Description: Safe and easy web browser from Mozilla - geckodriver
+Description: Email, RSS and newsgroup client - Breakpad symbols
  .
  This is a transitional package. It can be safely removed.

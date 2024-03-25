@@ -17,17 +17,14 @@ if "~" in version:
     release = version.split("~")[0]
     lmde = True
 
-if lmde:
-    locale_prefix = "firefox-l10n"
-else:
-    locale_prefix = "firefox-locale"
+locale_prefix = "thunderbird-locale"
 
 shipped_template = """
 Package: %s-%s
 Architecture: any
 Depends: ${misc:Depends}
-Description: %s language packs for Firefox
- %s language packs for the Mozilla Firefox Web Browser.
+Description: %s language packs for Thunderbird
+ %s language packs for the Mozilla Thunderbird Mail Client.
 """
 
 unavailable_template = """
@@ -35,7 +32,7 @@ Package: %s-%s
 Architecture: any
 Depends: ${misc:Depends}
 Description: Transitional package for unavailable language
- This language is unavailable for the current version of Firefox
+ This language is unavailable for the current Thunderbird version
  .
  This is an empty transitional package to ensure a clean upgrade
  process. You can safely remove this package after installation.
@@ -57,7 +54,7 @@ with open(os.path.join(curdir, "locales.shipped")) as f:
     for line in f:
         if line.startswith("#"):
             continue
-
+        print(line)
         xpi_name, pkg_name = line.split(":")
         pkg_name = pkg_name.replace("\n", "")
         xpi_locale_map[xpi_name] = pkg_name

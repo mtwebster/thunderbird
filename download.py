@@ -52,13 +52,16 @@ if not abort:
     os.system("ln -s /usr/lib/thunderbird/chrome/icons/default/default64.png 64x64/apps/thunderbird.png")
     os.system("ln -s /usr/lib/thunderbird/chrome/icons/default/default128.png 128x128/apps/thunderbird.png")
     os.system("ln -s /usr/lib/thunderbird/chrome/icons/default/default256.png 256x256/apps/thunderbird.png")
-    print("done")
-    exit(0)
 
 if lmde:
-    locale_prefix = "firefox-l10n"
+    locale_prefix = "thunderbird-l10n"
 else:
-    locale_prefix = "firefox-locale"
+    locale_prefix = "thunderbird-locale"
+
+
+#new_xpi_file = os.system("wget -O - http://download-origin.cdn.mozilla.net/pub/thunderbird/releases/115.8.1/linux-x86_64/xpi/ | sed -n 's/.*a href=.*>\([a-zA-Z-]*\).xpi.*/\1/p' > live-xpi-files")
+#os.system("
+
 
 codes = {}
 
@@ -77,14 +80,14 @@ with open(os.path.join(curdir, "locales.shipped")) as f:
 
 for xpi in codes.keys():
     package_code = codes[xpi]
-    os.system("mkdir -p %s/debian/%s-%s/usr/lib/firefox/distribution/extensions" % (curdir, locale_prefix, package_code))
-    os.chdir("%s/debian/%s-%s/usr/lib/firefox/distribution/extensions" % (curdir, locale_prefix, package_code))
+    os.system("mkdir -p %s/debian/%s-%s/usr/lib/thunderbird/distribution/extensions" % (curdir, locale_prefix, package_code))
+    os.chdir("%s/debian/%s-%s/usr/lib/thunderbird/distribution/extensions" % (curdir, locale_prefix, package_code))
 
     if not abort:
         os.system("wget %s/%s.xpi" % (XPI_URL, xpi))
         if (not os.path.exists("%s.xpi" % xpi)):
             print("FAILED: Could not download %s/%s.xpi" % (XPI_URL, xpi))
             sys.exit(1)
-        os.system("mv %s.xpi langpack-%s@firefox.mozilla.org.xpi" % (xpi, xpi))
+        os.system("mv %s.xpi langpack-%s@thunderbird.mozilla.org.xpi" % (xpi, xpi))
 
 os.chdir(curdir)

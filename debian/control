@@ -12,6 +12,7 @@ Breaks: firefox-dbg (<< 95.0.1+linuxmint1+una), firefox-dev (<< 95.0.1+linuxmint
 Provides: gnome-www-browser, www-browser
 Pre-Depends: ubuntu-system-adjustments (>= 2021.12.16)
 Description: The Firefox web browser
+ .
  The Mozilla Firefox Web Browser.
 
 Package: thunderbird-dbg
