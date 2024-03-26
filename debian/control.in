@@ -9,7 +9,16 @@ Package: thunderbird
 Architecture: any
 Breaks: thunderbird-dbg (<< 1:115.8.1+build1+snap1), thunderbird-dev (<< 1:115.8.1+build1+snap1), thunderbird-geckodriver (<< 1:115.8.1+build1+snap1), thunderbird-mozsymbols (<< 1:115.8.1+build1+snap1)
 Replaces: thunderbird-dbg (<< 1:115.8.1+build1+snap1), thunderbird-dev (<< 1:115.8.1+build1+snap1), thunderbird-geckodriver (<< 1:115.8.1+build1+snap1), thunderbird-mozsymbols (<< 1:115.8.1+build1+snap1)
-Provides: mail-reader
+Provides:
+ mail-reader,
+ thunderbird-gnome-support,
+ thunderbird-locale-bn,
+ thunderbird-locale-bn-bd,
+ thunderbird-locale-mk,
+ thunderbird-locale-si,
+ thunderbird-locale-fa,
+ thunderbird-locale-ta,
+ thunderbird-locale-ta-lk
 Pre-Depends: ubuntu-system-adjustments (>= 2021.12.16)
 Description: Email, RSS and newsgroup client with integrated spam filter
  Thunderbird is a full-featured email, RSS and newsgroup client that makes

@@ -1,5 +1,5 @@
 af:af
-ar:an
+ar:ar
 ast:ast
 be:be
 bg:bg
@@ -10,10 +10,11 @@ cs:cs
 cy:cy
 da:da
 de:de
-dsb:de
+dsb:dsb
 el:el
 en-CA:en
 en-GB:en
+en-US:en
 es-AR:es
 es-ES:es
 es-MX:es
@@ -38,7 +39,7 @@ ka:ka
 kab:kab
 kk:kk
 ko:ko
-lt:lv
+lt:lt
 lv:lv
 ms:ms
 nb-NO:nb
