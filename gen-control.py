@@ -21,7 +21,7 @@ locale_prefix = "thunderbird-locale"
 
 shipped_template = """
 Package: %s-%s
-Architecture: any
+Architecture: all
 Depends: ${misc:Depends}%s
 Description: %s language packs for Thunderbird
  %s language packs for the Mozilla Thunderbird Mail Client.
@@ -42,6 +42,7 @@ class Pkg():
     def __init__(self, pkg_name):
         self.pkg_name = pkg_name
         self.provides = []
+        self.replaces = []
 
 shipped_packages = []
 
@@ -54,7 +55,6 @@ with open(os.path.join(curdir, "locales.shipped")) as f:
         print(line)
         xpi_name, pkg_name = line.split(":")
         pkg_name = pkg_name.replace("\n", "")
-
 
         xpi_locale_map[xpi_name] = pkg_name
 

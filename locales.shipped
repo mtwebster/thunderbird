@@ -1,3 +1,5 @@
+# real xpi name, package name, replaces/breaks
+# replaces/breaks are mainly to get thunderbird-locale-en-us out of the way.
 af:af
 ar:ar
 ast:ast
