@@ -45,8 +45,8 @@ if not abort:
     os.system("tar xvf thunderbird-%s.tar" % release_for_urls)
     os.system("rm thunderbird-%s.tar" % release_for_urls)
 
-    os.system("mkdir -p %s/debian/firefox/usr/lib/firefox/distribution" % curdir)
-    os.system("cp %s/pref/policies.json %s/debian/firefox/usr/lib/firefox/distribution" % (curdir, curdir))
+    os.system("mkdir -p %s/debian/thunderbird/usr/lib/thunderbird/distribution" % curdir)
+    os.system("cp %s/pref/policies.json %s/debian/thunderbird/usr/lib/thunderbird/distribution" % (curdir, curdir))
     # os.system("cp %s/pref/distribution.ini %s/debian/firefox/usr/lib/firefox/distribution" % (curdir, curdir))
 
     os.system("mkdir -p %s/debian/thunderbird/usr/share/icons/hicolor" % curdir)
