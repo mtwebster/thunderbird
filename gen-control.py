@@ -41,7 +41,6 @@ xpi_locale_map = {}
 class Pkg():
     def __init__(self, pkg_name):
         self.pkg_name = pkg_name
-        self.real_xpi = None
         self.provides = []
         self.replaces = []
 
@@ -50,7 +49,6 @@ shipped_packages = []
 with open(os.path.join(curdir, "locales.shipped")) as f:
     current_pkg = Pkg("")
     for line in f:
-        new_pkg = False
         if line.startswith("#"):
             continue
         line = line.replace("\n", "")
@@ -62,11 +60,9 @@ with open(os.path.join(curdir, "locales.shipped")) as f:
 
         if pkg_name != current_pkg.pkg_name:
             current_pkg = Pkg(pkg_name)
-            new_pkg = True
 
         if xpi_name != pkg_name:
-            if not new_pkg:
-                current_pkg.provides.append("%s-%s" % (locale_prefix, xpi_name.lower()))
+            current_pkg.provides.append("%s-%s" % (locale_prefix, xpi_name.lower()))
 
         if current_pkg not in shipped_packages:
             shipped_packages.append(current_pkg)
