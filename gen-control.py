@@ -21,21 +21,10 @@ locale_prefix = "thunderbird-locale"
 
 shipped_template = """
 Package: %s-%s
-Architecture: any
-Depends: ${misc:Depends}
+Architecture: all
+Depends: ${misc:Depends}%s
 Description: %s language packs for Thunderbird
  %s language packs for the Mozilla Thunderbird Mail Client.
-"""
-
-unavailable_template = """
-Package: %s-%s
-Architecture: any
-Depends: ${misc:Depends}
-Description: Transitional package for unavailable language
- This language is unavailable for the current Thunderbird version
- .
- This is an empty transitional package to ensure a clean upgrade
- process. You can safely remove this package after installation.
 """
 
 # Load code:Name list to popular control descriptions
@@ -48,32 +37,48 @@ with open(os.path.join(curdir, "locales.all")) as f:
         locale_name_dict[code] = lang.replace("\n", "")
 
 xpi_locale_map = {}
+
+class Pkg():
+    def __init__(self, pkg_name):
+        self.pkg_name = pkg_name
+        self.provides = []
+        self.replaces = []
+
 shipped_packages = []
 
 with open(os.path.join(curdir, "locales.shipped")) as f:
+    current_pkg = Pkg("")
     for line in f:
         if line.startswith("#"):
             continue
+        line = line.replace("\n", "")
         print(line)
         xpi_name, pkg_name = line.split(":")
         pkg_name = pkg_name.replace("\n", "")
+
         xpi_locale_map[xpi_name] = pkg_name
 
-        if pkg_name not in shipped_packages:
-            shipped_packages.append(pkg_name)
+        if pkg_name != current_pkg.pkg_name:
+            current_pkg = Pkg(pkg_name)
+
+        if xpi_name != pkg_name:
+            current_pkg.provides.append("%s-%s" % (locale_prefix, xpi_name.lower()))
+
+        if current_pkg not in shipped_packages:
+            shipped_packages.append(current_pkg)
 
 control_locales = ""
 used_codes = []
 
 print("\nGenerating %s entries for control file...\n")
 
-for locale in locale_name_dict.keys():
-    if locale in shipped_packages:
-        print(locale, locale_name_dict[locale])
-        control_locales += (shipped_template % (locale_prefix, locale, locale_name_dict[locale], locale_name_dict[locale]))
+for pkg in shipped_packages:
+    if len(pkg.provides) != 0:
+        provide_str = "\nProvides: %s" % ", ".join(pkg.provides)
     else:
-        print(locale, locale_name_dict[locale], ".......transitional package")
-        control_locales += (unavailable_template % (locale_prefix, locale))
+        provide_str = ""
+    control_locales += (
+        shipped_template % (locale_prefix, pkg.pkg_name, provide_str, locale_name_dict[pkg.pkg_name], locale_name_dict[pkg.pkg_name]))
 
 with open(os.path.join(curdir, "debian", "control"), "w") as f:
     control = ""

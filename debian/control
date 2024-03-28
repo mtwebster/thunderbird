@@ -1,25 +1,29 @@
 Source: thunderbird
-Section: web
+Section: mail
 Priority: optional
 Maintainer: Clement Lefebvre <root@linuxmint.com>
 Build-Depends: debhelper (>= 11), wget, python3
 Standards-Version: 3.7.2
 
+
 Package: thunderbird
 Architecture: any
-Replaces: firefox-dbg (<< 95.0.1+linuxmint1+una), firefox-dev (<< 95.0.1+linuxmint1+una), firefox-mozsymbols (<< 95.0.1+linuxmint1+una), firefox-geckodriver (<< 95.0.1+linuxmint1+una)
-Breaks: firefox-dbg (<< 95.0.1+linuxmint1+una), firefox-dev (<< 95.0.1+linuxmint1+una), firefox-mozsymbols (<< 95.0.1+linuxmint1+una), firefox-geckodriver (<< 95.0.1+linuxmint1+una)
-Provides: gnome-www-browser, www-browser
-Pre-Depends: ubuntu-system-adjustments (>= 2021.12.16)
-Description: The Firefox web browser
- .
- The Mozilla Firefox Web Browser.
-
-Package: thunderbird-dbg
-Architecture: any
-Section: debug
-Priority: extra
-Description: Safe and easy web browser from Mozilla - debug symbols
- .
- This is a transitional package. It can be safely removed.
+Provides:
+ mail-reader,
+ thunderbird-gnome-support,
+ thunderbird-locale-bn,
+ thunderbird-locale-bn-bd,
+ thunderbird-locale-fa,
+ thunderbird-locale-mk,
+ thunderbird-locale-si,
+ thunderbird-locale-ta,
+ thunderbird-locale-ta-lk
+Description: Email, RSS and newsgroup client with integrated spam filter
+ Thunderbird is a full-featured email, RSS and newsgroup client that makes
+ emailing safer, faster and easier than ever before. It supports different mail
+ accounts (POP, IMAP, Gmail), has a simple mail account setup wizard, one-
+ click address book, tabbed interface, an integrated learning spam filter,
+ advanced search and indexing capabilities, and offers easy organization
+ of mails with tagging and virtual folders. It also features unrivalled
+ extensibility.
 

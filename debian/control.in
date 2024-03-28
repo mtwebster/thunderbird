@@ -5,12 +5,19 @@ Maintainer: Clement Lefebvre <root@linuxmint.com>
 Build-Depends: debhelper (>= 11), wget, python3
 Standards-Version: 3.7.2
 
+
 Package: thunderbird
 Architecture: any
-Breaks: thunderbird-dbg (<< 1:115.8.1+build1+snap1), thunderbird-dev (<< 1:115.8.1+build1+snap1), thunderbird-geckodriver (<< 1:115.8.1+build1+snap1), thunderbird-mozsymbols (<< 1:115.8.1+build1+snap1)
-Replaces: thunderbird-dbg (<< 1:115.8.1+build1+snap1), thunderbird-dev (<< 1:115.8.1+build1+snap1), thunderbird-geckodriver (<< 1:115.8.1+build1+snap1), thunderbird-mozsymbols (<< 1:115.8.1+build1+snap1)
-Provides: mail-reader
-Pre-Depends: ubuntu-system-adjustments (>= 2021.12.16)
+Provides:
+ mail-reader,
+ thunderbird-gnome-support,
+ thunderbird-locale-bn,
+ thunderbird-locale-bn-bd,
+ thunderbird-locale-fa,
+ thunderbird-locale-mk,
+ thunderbird-locale-si,
+ thunderbird-locale-ta,
+ thunderbird-locale-ta-lk
 Description: Email, RSS and newsgroup client with integrated spam filter
  Thunderbird is a full-featured email, RSS and newsgroup client that makes
  emailing safer, faster and easier than ever before. It supports different mail
@@ -20,26 +27,3 @@ Description: Email, RSS and newsgroup client with integrated spam filter
  of mails with tagging and virtual folders. It also features unrivalled
  extensibility.
 
-Package: thunderbird-dbg
-Architecture: any
-Section: debug
-Priority: extra
-Description: Email, RSS and newsgroup client - debug symbols
- .
- This is a transitional package. It can be safely removed.
-
-Package: thunderbird-dev
-Architecture: any
-Section: mail
-Priority: extra
-Description: Email, RSS and newsgroup client - development files
- .
- This is a transitional package. It can be safely removed.
-
-Package: thunderbird-mozsymbols
-Architecture: amd64 i386
-Section: debug
-Priority: extra
-Description: Email, RSS and newsgroup client - Breakpad symbols
- .
- This is a transitional package. It can be safely removed.

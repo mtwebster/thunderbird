@@ -10,6 +10,8 @@ abort = False
 
 lmde = False
 
+VERSION_EPOCH="1"
+
 release = version
 if "+" in version:
     release = version.split("+")[0]
@@ -18,13 +20,15 @@ if "~" in version:
     release = version.split("~")[0]
     lmde = True
 
+release_for_urls = release.removeprefix("%s:" % VERSION_EPOCH)
+
 if archi == "amd64":
     archi="linux-x86_64"
 else:
     archi="linux-i686"
 
-US_URL = "http://download-origin.cdn.mozilla.net/pub/thunderbird/releases/%s/%s/en-US/thunderbird-%s.tar.bz2" % (release, archi, release)
-XPI_URL = "http://download-origin.cdn.mozilla.net/pub/thunderbird/releases/%s/%s/xpi" % (release, archi)
+US_URL = "http://download-origin.cdn.mozilla.net/pub/thunderbird/releases/%s/%s/en-US/thunderbird-%s.tar.bz2" % (release_for_urls, archi, release_for_urls)
+XPI_URL = "http://download-origin.cdn.mozilla.net/pub/thunderbird/releases/%s/%s/xpi" % (release_for_urls, archi)
 
 os.system("rm -rf %s/debian/thunderbird" % curdir)
 os.system("rm -rf %s/debian/thunderbird-*" % curdir)
@@ -33,13 +37,17 @@ os.chdir("%s/debian/thunderbird/usr/lib" % curdir)
 if not abort:
 
     os.system("wget %s" % US_URL)
-    if (not os.path.exists("thunderbird-%s.tar.bz2" % release)):
+    if (not os.path.exists("thunderbird-%s.tar.bz2" % release_for_urls)):
         print("FAILED: Could not download %s" % (US_URL))
         sys.exit(1)
 
-    os.system("bzip2 -d thunderbird-%s.tar.bz2" % release)
-    os.system("tar xvf thunderbird-%s.tar" % release)
-    os.system("rm thunderbird-%s.tar" % release)
+    os.system("bzip2 -d thunderbird-%s.tar.bz2" % release_for_urls)
+    os.system("tar xvf thunderbird-%s.tar" % release_for_urls)
+    os.system("rm thunderbird-%s.tar" % release_for_urls)
+
+    os.system("mkdir -p %s/debian/firefox/usr/lib/firefox/distribution" % curdir)
+    os.system("cp %s/pref/policies.json %s/debian/firefox/usr/lib/firefox/distribution" % (curdir, curdir))
+    # os.system("cp %s/pref/distribution.ini %s/debian/firefox/usr/lib/firefox/distribution" % (curdir, curdir))
 
     os.system("mkdir -p %s/debian/thunderbird/usr/share/icons/hicolor" % curdir)
     os.chdir("%s/debian/thunderbird/usr/share/icons/hicolor" % curdir)
